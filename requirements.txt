@@ -7,3 +7,4 @@ SpeechRecognition
 werkzeug
 gunicorn
 pyttsx3
+opencv-python-headless
