@@ -1,0 +1,9 @@
+Flask
+Flask-MySQLdb
+google-generativeai
+markdown
+pyttsx3
+requests
+SpeechRecognition
+pyaudio
+werkzeug
