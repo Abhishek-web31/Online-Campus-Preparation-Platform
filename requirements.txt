@@ -6,3 +6,4 @@ requests
 SpeechRecognition
 werkzeug
 gunicorn
+pyttsx3
