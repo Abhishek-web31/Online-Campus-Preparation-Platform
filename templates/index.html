@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Prep | AI-Powered Placement Preparation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #121212;
+            color: #f5f5f5;
+        }
+
+        /* Global Styles */
+        h1, h2, h3, p {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Section */
+        .bg-hero {
+            background-image: url('static/img/ind.jpg'); /* Update this path if necessary */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            animation: fadeIn 2s ease-out;
+            z-index: 10;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .hero-text {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #000000; /* Neon Green for AI feel */
+            text-shadow: 0px 0px 20px rgba(0, 255, 171, 0.8);
+        }
+
+        .hero-subtext {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            color: #FFF;
+            margin-top: 20px;
+        }
+
+        .cta-button {
+            padding: 18px 40px;
+            background-color: #00FFAB;
+            color: #121212;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 30px;
+            margin-top: 30px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 171, 0.8);
+        }
+
+        .cta-button:hover {
+            background-color: #00d28a;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #00FFAB, 0 0 30px #00FFAB;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: transparent; /* Transparent background */
+            padding: 12px 20px; /* Reduced padding */
+            box-shadow: none; /* Optional: Remove shadow */
+        }
+
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            padding: 8px 16px; /* Reduced padding */
+            font-weight: 600;
+            font-size: 14px; /* Smaller font size */
+            text-transform: uppercase;
+            color: #f5f5f5;
+            border-radius: 20px;
+            margin-right: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #00FFAB;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-link:hover {
+            color: #00FFAB;
+            transform: translateY(-3px);
+        }
+
+        /* Feature Section */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .feature-card {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 171, 0.2);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .feature-card-content {
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 171, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #121212;
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-links a {
+            color: #fff;
+            margin: 0 15px;
+            font-size: 16px;
+            position: relative;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #00FFAB;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .footer-links a:hover {
+            color: #00FFAB;
+            transform: translateY(-3px);
+        }
+
+        /* Cursor Trail Effect (AI inspired) */
+        .cursor-trail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10000;
+            width: 16px;
+            height: 16px;
+            background-color: #00FFAB;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.75;
+            animation: cursorTrail 0.4s ease-out infinite;
+        }
+
+        @keyframes cursorTrail {
+            0% { transform: scale(0.8); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+            100% { transform: scale(0.8); opacity: 1; }
+        }
+
+        /* Typing Effect */
+        .typing-effect {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #00FFAB;
+            width: 0;
+            animation: typing 4s steps(40) 1s forwards, blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cursor Trail (AI Inspired) -->
+    <div class="cursor-trail"></div>
+
+    <!-- Navbar -->
+    <nav class="bg-transparent p-6 shadow-none fixed w-full top-0 left-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-4xl font-extrabold text-white hover:text-green-500 transition-all">Campus Prep</a>
+            <div class="flex space-x-8">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/login" class="nav-link">Login</a>
+                <a href="/register" class="nav-link">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-hero">
+        <div class="hero-content">
+            <h1 class="hero-text">Your AI-Powered Placement Prep</h1>
+            <p class="hero-subtext typing-effect">AI-driven mock interviews, personalized roadmaps, and placement success strategies!</p>
+            <a href="/login" class="cta-button">Get Started</a>
+        </div>
+    </header>
+
+    <!-- Feature Section -->
+    <section class="py-20 bg-gray-900 text-white">
+        <h2 class="section-title">Features Powered by AI</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 px-6">
+            <div class="feature-card">
+                <img src="{{ url_for('static', filename='img/image.png') }}" alt="AI Mock Interviews">
+
+                <div class="feature-card-content">
+                    <h3>AI Mock Interviews</h3>
+                    <p>Experience real-time simulated mock interviews powered by AI technology.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <img src="{{ url_for('static', filename='img/rd.jpeg') }}" alt="AI Mock Interviews">
+
+                <div class="feature-card-content">
+                    <h3>Personalized Roadmaps</h3>
+                    <p>Get AI-powered personalized roadmaps tailored to your career and goals.</p>
+                </div>
+            </div>
+            <div class="feature-card">
+                <img src="{{ url_for('static', filename='img/job.jpeg') }}" alt="AI Mock Interviews">
+                <div class="feature-card-content">
+                    <h3>Placement Assistance</h3>
+                    <p>AI-driven placement assistance with real-time feedback and placement tips.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <p class="mt-6">&copy; 2025 Campus Prep | All Rights Reserved</p>
+    </footer>
+
+    <!-- AI Voice Assistant Script -->
+    <script>
+        document.addEventListener('mousemove', function (e) {
+            const cursor = document.querySelector('.cursor-trail');
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.left = e.clientX + 'px';
+        });
+
+        // Simulate AI voice assistant reading
+        function speakText(text) {
+            const synth = window.speechSynthesis;
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.voice = synth.getVoices().filter(voice => voice.lang === 'en-US')[0];
+            synth.speak(utterance);
+        }
+
+        speakText("Welcome to Campus Prep, your AI-powered placement assistant!");
+    </script>
+</body>
+</html>

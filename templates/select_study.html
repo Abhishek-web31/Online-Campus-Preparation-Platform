@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Select Subject</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('static/img/ind.jpg'); /* Replace with your background image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 500px;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            padding: 30px;
+            margin: 50px auto;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 123, 255, 0.7); /* Glowing effect */
+            text-align: left;
+            backdrop-filter: blur(10px); /* Optional blur effect for the background */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            box-shadow: 0px 4px 25px rgba(0, 123, 255, 1); /* Glowing effect on hover */
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        select {
+            background: #fff;
+        }
+
+        button {
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+            box-shadow: 0px 0px 15px rgba(0, 123, 255, 1); /* Glowing effect on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Select a Subject</h2>
+        <form method="POST" action="/study_references">
+            <select name="subject" required>
+                {% for subject in subjects %}
+                    <option value="{{ subject }}">{{ subject }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Next</button>
+        </form>
+    </div>
+</body>
+</html>

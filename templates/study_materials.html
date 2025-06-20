@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study References</title>
+    <style>
+        /* Set background image with black theme */
+        body {
+            background-image: url('static/img/ind.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff; /* Set text color to white */
+        }
+
+        /* Center content and create a semi-transparent black background */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.8); /* Black background with some transparency */
+            padding: 20px;
+        }
+
+        /* Glowing AI effect for headings */
+        h2, h3 {
+            text-align: center;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            text-shadow: 0 0 20px rgba(0, 0, 255, 0.8), 0 0 30px rgba(0, 0, 255, 0.6); /* Glowing blue */
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 40px rgba(0, 255, 0, 0.6); /* Glowing green */
+        }
+
+        /* Style for the unordered list */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Style list items and links */
+        li {
+            margin: 10px 0;
+        }
+
+        a {
+            color: #00ff00; /* Glowing green for links */
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Apply glowing effect to links on hover */
+        a:hover {
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+        }
+
+        /* Styling for video iframe */
+        iframe {
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 255, 0.6); /* Blue glowing shadow */
+        }
+
+        /* Responsive iframe for smaller screens */
+        @media (max-width: 768px) {
+            iframe {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Study Materials for {{ topic }} in {{ subject }}</h2>
+
+        <h3>Books</h3>
+        <ul>
+            {% for book in references['books'] %}
+                {% set book_name, book_url = book.split(' - ') %}
+                <li><a href="{{ book_url }}" target="_blank">{{ book_name }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h3>Videos</h3>
+        <ul>
+            {% for video in references.videos %}
+                <li>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video }}" frameborder="0" allowfullscreen></iframe>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

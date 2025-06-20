@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap | Campus Prep</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 font-sans text-white">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4 shadow-md text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/dashboard" class="text-3xl font-bold tracking-wide text-blue-400">Campus Prep</a>
+            <a href="/logout" class="px-4 py-2 bg-red-600 rounded-lg hover:bg-red-500 transition duration-300">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="container mx-auto p-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold text-blue-400">Personalized Roadmap</h1>
+            <p class="mt-2 text-lg text-gray-400">Based on your skills and semester, here is your recommended roadmap.</p>
+        </div>
+
+        <!-- Roadmap Description -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-semibold text-blue-400 mb-4">Your Personalized Study Roadmap</h2>
+            <p class="text-lg text-gray-300">{{ roadmap|safe }}</p>
+        </div>
+
+        <!-- Horizontal Roadmap Design -->
+        <div class="mt-12">
+            <div class="space-y-8">
+
+                {% if week_allocations %}
+                    {% for week, topics in week_allocations.items() %}
+                        <!-- Week Box -->
+                        <div class="bg-gray-700 text-white rounded-xl shadow-lg p-6">
+                            <h4 class="text-xl font-bold mb-4 text-blue-400">{{ week }}</h4>
+                            <ul class="list-disc pl-5 text-sm space-y-2 text-gray-300">
+                                {% for topic in topics %}
+                                    <li>{{ topic }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-lg text-center text-gray-500">No week allocations available.</p>
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-4 mt-12">
+        <p>&copy; 2025 Campus Prep. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topics Page</title>
+
+    <!-- Bootstrap 5 CSS (you can link from CDN for quick use) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Optional: Add custom styles for dark theme, glowing effect, and background image -->
+    <style>
+        /* Set background image and dark theme */
+        body {
+            background: url('static/img/ind.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Center align the container */
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Black theme for content box */
+        .card {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* Glowing effect for buttons */
+        .btn {
+            position: relative;
+            display: block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .btn:hover {
+            background-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+        }
+
+        .topics-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        /* Header style */
+        h1, .card-title {
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+        }
+
+        /* Footer text */
+        footer {
+            color: #ccc;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <!-- Header Section -->
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h1 class="display-4 mb-4">Select a Topic</h1>
+            </div>
+        </div>
+
+        <!-- Topics List Section -->
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Choose a Topic to Start</h5>
+                        <ul class="topics-list">
+                            {% for topic in topics1 %}
+                            <li>
+                                <a href="{{ url_for('start_interview', selected_topic=topic) }}" class="btn">
+                                    {{ topic.replace('_', ' ') }}
+                                </a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <div class="alert alert-warning" role="alert">
+                                    No topics available. Please try again later.
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-12 text-center">
+                <footer>
+                    <p>&copy; 2025 Your Website. All Rights Reserved.</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

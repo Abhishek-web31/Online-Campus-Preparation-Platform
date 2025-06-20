@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Practice Questions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Practice Questions</h2>
+    <div id="questions"></div>
+    <button onclick="fetchQuestions()">Get New Questions</button>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Questions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4">
+            <h2 class="text-center mb-4">Practice Questions</h2>
+            <h5 class="text-center text-primary">{{ subject }} ({{ difficulty }} Level)</h5>
+            <form method="POST" action="/submit_answers">
+                <input type="hidden" name="subject" value="{{ subject }}">
+                <input type="hidden" name="difficulty" value="{{ difficulty }}">
+
+                {% for q in questions %}
+                    <div class="question-box mt-3 p-3">
+                        <p class="question-text"><strong>{{ loop.index }}. {{ q.question }}</strong></p>
+                        <div class="options">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="answer{{ loop.index }}" value="a" required>
+                                <label class="form-check-label">{{ q.options.a }}</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="answer{{ loop.index }}" value="b">
+                                <label class="form-check-label">{{ q.options.b }}</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="answer{{ loop.index }}" value="c">
+                                <label class="form-check-label">{{ q.options.c }}</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="answer{{ loop.index }}" value="d">
+                                <label class="form-check-label">{{ q.options.d }}</label>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary w-100 mt-4">Submit Answers</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

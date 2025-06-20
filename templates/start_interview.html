@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Interview</title>
+
+    <!-- Optional: Add custom styles for dark theme, glowing effect, and background image -->
+    <style>
+        /* Set background image and dark theme */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+            background-image: url('{{ url_for('static', filename='img/ind.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        /* Centered container with dark overlay */
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay for better text visibility */
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Heading style */
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8); /* Glowing text effect */
+        }
+
+        /* Glowing effect for buttons */
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #007bff; /* Bootstrap Primary Color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            background-color: #00d4ff; /* Lighter shade for hover */
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8); /* Glowing effect on hover */
+        }
+
+        /* Link style for 'Back to Topics' */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: white;
+            text-decoration: underline;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #00d4ff; /* Light cyan for hover effect */
+        }
+
+        /* Video player styling */
+        .video-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        video {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Motion detection status */
+        .motion-status {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #f44336;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Starting Interview on: {{ topic }}</h1>
+
+        <!-- Video Stream Container -->
+        <div class="video-container">
+            <img id="video-feed" src="{{ url_for('video_feed') }}" width="640" height="480" alt="Camera Feed">
+        </div>
+
+        <!-- Motion detection status -->
+        <div class="motion-status">
+            {% if motion_detected %}
+                Motion detected! You can start the interview.
+            {% else %}
+                No motion detected. Please make sure you're in front of the camera.
+            {% endif %}
+        </div>
+
+        <!-- Start Interview Button -->
+        <form action="{{ url_for('interview') }}" method="POST">
+            <input type="hidden" name="topic" value="{{ topic }}">
+            <button type="submit">Start Interview</button>
+        </form>
+
+        <!-- Link back to the topics page -->
+        <a href="{{ url_for('select_topic') }}">Back to Topics</a>
+    </div>
+
+</body>
+
+</html>

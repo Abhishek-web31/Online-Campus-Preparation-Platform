@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Campus Prep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Fullscreen background image */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .overlay {
+            background-image: url('static/img/ind.jpg'); /* Replace with your own image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Keep the background fixed during scroll */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Keep the background behind the content */
+        }
+
+        .overlay-background {
+            background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black overlay */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        /* Ensure content container is centered */
+        .container {
+            min-height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body class="font-roboto">
+
+    <!-- Background Image and Overlay -->
+    <div class="overlay"></div>
+    <div class="overlay-background"></div>
+
+    <!-- Main Container for Centering -->
+    <div class="container">
+
+        <!-- Form Container -->
+        <div class="bg-black bg-opacity-40 p-12 rounded-3xl shadow-2xl w-full sm:w-96 backdrop-blur-lg transform transition-all duration-500 ease-in-out hover:scale-105 relative">
+
+            <!-- AI Background Effect -->
+            <div class="absolute inset-0 bg-black opacity-40 rounded-3xl"></div>
+
+            <h2 class="text-3xl font-bold text-center text-white mb-8 relative z-10">Register</h2>
+
+            <form action="{{ url_for('register') }}" method="POST" class="space-y-6 z-10 relative">
+
+                <!-- Name Input -->
+                <div>
+                    <label for="name" class="block text-gray-200">Name:</label>
+                    <input type="text" name="name" id="name" class="w-full p-3 bg-gray-700 text-gray-100 rounded-lg border-2 border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200" required>
+                </div>
+
+                <!-- Email Input -->
+                <div>
+                    <label for="email" class="block text-gray-200">Email:</label>
+                    <input type="email" name="email" id="email" class="w-full p-3 bg-gray-700 text-gray-100 rounded-lg border-2 border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200" required>
+                </div>
+
+                <!-- Password Input -->
+                <div>
+                    <label for="password" class="block text-gray-200">Password:</label>
+                    <input type="password" name="password" id="password" class="w-full p-3 bg-gray-700 text-gray-100 rounded-lg border-2 border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200" required>
+                </div>
+
+                <!-- Branch Input -->
+                <div>
+                    <label for="branch" class="block text-gray-200">Branch:</label>
+                    <input type="text" name="branch" id="branch" class="w-full p-3 bg-gray-700 text-gray-100 rounded-lg border-2 border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200" required>
+                </div>
+
+                <!-- Skills Input -->
+                <div>
+                    <label for="skills" class="block text-gray-200">Skills:</label>
+                    <input type="text" name="skills" id="skills" class="w-full p-3 bg-gray-700 text-gray-100 rounded-lg border-2 border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200" required>
+                </div>
+
+                <!-- Semester Input -->
+                <div>
+                    <label for="semester" class="block text-gray-200">Semester:</label>
+                    <input type="text" name="semester" id="semester" class="w-full p-3 bg-gray-700 text-gray-100 rounded-lg border-2 border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200" required>
+                </div>
+
+                <!-- Course Input -->
+                <div>
+                    <label for="course" class="block text-gray-200">Course:</label>
+                    <input type="text" name="course" id="course" class="w-full p-3 bg-gray-700 text-gray-100 rounded-lg border-2 border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200" required>
+                </div>
+
+                <!-- Known Topics Input -->
+                <div>
+                    <label for="known_topics" class="block text-gray-200">Known Topics (Comma Separated):</label>
+                    <input type="text" name="known_topics" id="known_topics" class="w-full p-3 bg-gray-700 text-gray-100 rounded-lg border-2 border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-200">
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-teal-500 text-white p-3 rounded-lg hover:bg-teal-600 transition duration-300 transform hover:scale-105">
+                    Register
+                </button>
+            </form>
+
+            <p class="text-center text-gray-200 mt-6">
+                Already have an account? <a href='/login' class="text-teal-400 hover:text-teal-500">Login</a>
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>

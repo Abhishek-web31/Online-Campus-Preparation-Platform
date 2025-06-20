@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            background: #2c2c2c;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+        h2 {
+            text-align: center;
+            color: #fff;
+        }
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #ddd;
+        }
+        .options {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+            color: #aaa;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .ai-button {
+            padding: 10px;
+            margin-top: 20px;
+            width: 100%;
+            border: none;
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .ai-button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Practice Questions - {{ subject }} ({{ difficulty }})</h2>
+        <form method="POST" action="/submit_answers">
+            <input type="hidden" name="subject" value="{{ subject }}">
+            <input type="hidden" name="difficulty" value="{{ difficulty }}">
+
+            {% for q in questions %}
+                <p class="question">{{ loop.index }}. {{ q.question }}</p>
+                <div class="options">
+                    <label><input type="radio" name="answer{{ loop.index }}" value="a"> {{ q.options.a }}</label>
+                    <label><input type="radio" name="answer{{ loop.index }}" value="b"> {{ q.options.b }}</label>
+                    <label><input type="radio" name="answer{{ loop.index }}" value="c"> {{ q.options.c }}</label>
+                    <label><input type="radio" name="answer{{ loop.index }}" value="d"> {{ q.options.d }}</label>
+                </div>
+            {% endfor %}
+
+            <button type="submit">Submit Answers</button>
+        </form>
+
+        <!-- AI Button -->
+        <button class="ai-button" onclick="askAI()">Ask AI for Help</button>
+        <div id="ai-response" style="margin-top: 20px; color: #ddd;"></div>
+    </div>
+
+    <script>
+        function askAI() {
+            // Simulating an AI interaction for practice questions.
+            const aiResponses = [
+                "I suggest focusing on understanding key concepts from each question.",
+                "You might want to review any tricky concepts before answering.",
+                "Take a moment to read each question carefully to avoid any mistakes."
+            ];
+
+            const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+            document.getElementById("ai-response").innerText = randomResponse;
+        }
+    </script>
+</body>
+</html>
